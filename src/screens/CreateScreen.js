@@ -9,6 +9,10 @@ export const CreateScreen = () => {
     )
 }
 
+CreateScreen.navigationOptions = {
+    headerTitle: 'Blog Creation'
+}
+
 const styles = StyleSheet.create({
     center: {
         flex: 1,
