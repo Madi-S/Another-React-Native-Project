@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
+import { AppHeaderIcon } from '../components/AppHeaderIcon'
 import { DATA } from '../data'
 import { Post } from '../components/Post'
 
@@ -9,7 +11,11 @@ export const MainScreen = ({ navigation }) => {
         /* navigation.push('Main')
         Creates new stack (e.g., navigation to the same screen acts like navigation to a new screen)
         */
-        navigation.navigate('Post', { postId: post.id, date: post.date })
+        navigation.navigate('Post', {
+            date: post.date,
+            postId: post.id,
+            booked: post.booked,
+        })
     }
 
     return (
@@ -26,7 +32,25 @@ export const MainScreen = ({ navigation }) => {
 }
 
 MainScreen.navigationOptions = {
-    headerTitle: 'My Blog'
+    headerTitle: 'My Blog',
+    headerRight: (
+        <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+            <Item
+                title='Take photo'
+                iconName='ios-camera'
+                onPress={() => console.log('Take photo')}
+            />
+        </HeaderButtons>
+    ),
+    headerLeft: (
+        <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+            <Item
+                title='Toggle drawer'
+                iconName='ios-menu'
+                onPress={() => console.log('Take a photo')}
+            />
+        </HeaderButtons>
+    )
 }
 
 const styles = StyleSheet.create({

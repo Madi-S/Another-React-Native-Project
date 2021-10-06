@@ -8,7 +8,9 @@ import {
     Button,
     Alert
 } from 'react-native'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
+import { AppHeaderIcon } from '../components/AppHeaderIcon'
 import { THEME } from '../theme'
 import { DATA } from '../data'
 
@@ -44,8 +46,12 @@ export const PostScreen = ({ navigation }) => {
 
 PostScreen.navigationOptions = ({ navigation }) => {
     const date = new Date(navigation.getParam('date')).toLocaleDateString()
+
+    const booked = navigation.getParam('booked')
+    const iconName = booked ? 'ios-star' : 'ios-star-outline'
+
     return {
-        headerTitle: `Post of ${date}`
+        headerTitle: `Post of ${date}`,
         /*
         Header customization for particular screen
         headerStyle: {
@@ -53,6 +59,15 @@ PostScreen.navigationOptions = ({ navigation }) => {
         },
         headerTintColor: 'blue'
         */
+        headerRight: (
+            <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+                <Item
+                    title='Bookmark'
+                    iconName={iconName}
+                    onPress={() => console.log('Take photo')}
+                />
+            </HeaderButtons>
+        )
     }
 }
 
