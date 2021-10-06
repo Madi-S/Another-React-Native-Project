@@ -1,17 +1,30 @@
 import React from 'react'
-import { View, Text, ImageBackground, StyleSheet } from 'react-native'
+import {
+    View,
+    Text,
+    ImageBackground,
+    TouchableOpacity,
+    StyleSheet
+} from 'react-native'
 
-export const Post = ({ post }) => {
+export const Post = ({ post, onPress }) => {
+    const openPost = () => onPress(post)
+
     return (
-        <View style={styles.post}>
-            <ImageBackground style={styles.bgImage} source={{ uri: post.img }}>
-                <View style={styles.textWrapper}>
-                    <Text style={styles.title}>
-                        {new Date(post.date).toLocaleDateString()}
-                    </Text>
-                </View>
-            </ImageBackground>
-        </View>
+        <TouchableOpacity activeOpacity={0.7} onPress={openPost}>
+            <View style={styles.post}>
+                <ImageBackground
+                    style={styles.bgImage}
+                    source={{ uri: post.img }}
+                >
+                    <View style={styles.textWrapper}>
+                        <Text style={styles.title}>
+                            {new Date(post.date).toLocaleDateString()}
+                        </Text>
+                    </View>
+                </ImageBackground>
+            </View>
+        </TouchableOpacity>
     )
 }
 
