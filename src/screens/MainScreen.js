@@ -6,7 +6,7 @@ export const MainScreen = ({ navigation }) => {
         /* navigation.push('Main')
         Creates new stack (e.g., navigation to the same screen acts like navigation to a new screen)
         */
-        navigation.navigate('Main')
+        navigation.navigate('Post')
     }
 
     return (
