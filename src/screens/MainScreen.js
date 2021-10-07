@@ -20,7 +20,7 @@ export const MainScreen = ({ navigation }) => {
     return <PostList data={DATA} onOpen={openPostHandler} />
 }
 
-MainScreen.navigationOptions = {
+MainScreen.navigationOptions = ({ navigation }) => ({
     headerTitle: 'My Blog',
     headerRight: () => (
         <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
@@ -36,8 +36,8 @@ MainScreen.navigationOptions = {
             <Item
                 title='Toggle drawer'
                 iconName='ios-menu'
-                onPress={() => console.log('Toggle drawer')}
+                onPress={navigation.toggleDrawer}
             />
         </HeaderButtons>
     )
-}
+})
