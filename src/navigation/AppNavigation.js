@@ -11,23 +11,22 @@ import { MainScreen } from '../screens/MainScreen'
 import { PostScreen } from '../screens/PostScreen'
 import { BookedScreen } from '../screens/BookedScreen'
 
+const defaultNavigorOptions = {
+    headerStyle: {
+        backgroundColor:
+            Platform.OS === 'android' ? THEME.PRIMARY_COLOR : 'white'
+    },
+    headerTintColor: Platform.OS === 'android' ? 'white' : THEME.SECONDARY_COLOR
+}
+
 const PostNavigator = createStackNavigator(
     {
         Main: MainScreen,
-        Post: {
-            screen: PostScreen
-        }
+        Post: PostScreen
     },
     {
         initialRouteName: 'Main',
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor:
-                    Platform.OS === 'android' ? THEME.PRIMARY_COLOR : 'white'
-            },
-            headerTintColor:
-                Platform.OS === 'android' ? 'white' : THEME.SECONDARY_COLOR
-        }
+        defaultNavigationOptions: defaultNavigorOptions
     }
 )
 
@@ -38,14 +37,7 @@ const BookedNavigator = createStackNavigator(
     },
     {
         initialRouteName: 'Booked',
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor:
-                    Platform.OS === 'android' ? THEME.PRIMARY_COLOR : 'white'
-            },
-            headerTintColor:
-                Platform.OS === 'android' ? 'white' : THEME.SECONDARY_COLOR
-        }
+        defaultNavigationOptions: defaultNavigorOptions
     }
 )
 
