@@ -78,14 +78,56 @@ const bottomNavigator =
               }
           })
 
-const MainNavigator = createDrawerNavigator({
-    PostTabs: {
-        screen: bottomNavigator
+const MainNavigator = createDrawerNavigator(
+    {
+        PostTabs: {
+            screen: bottomNavigator,
+            navigationOptions: {
+                drawerLabel: 'Main',
+                drawerIcon: (
+                    <Ionicons
+                        size={20}
+                        name='ios-home'
+                        color={THEME.PRIMARY_COLOR}
+                    />
+                )
+            }
+        },
+        About: {
+            screen: AboutNavigator,
+            navigationOptions: {
+                drawerLabel: 'About us',
+                drawerIcon: (
+                    <Ionicons
+                        size={20}
+                        name='information-circle'
+                        color={THEME.PRIMARY_COLOR}
+                    />
+                )
+            }
+        },
+        Create: {
+            screen: CreateNavigator,
+            navigationOptions: {
+                drawerLabel: 'Create Post',
+                drawerIcon: (
+                    <Ionicons
+                        size={20}
+                        name='add-circle'
+                        color={THEME.PRIMARY_COLOR}
+                    />
+                )
+            }
+        }
     },
-    About: {
-        screen: AboutNavigator
-    },
-    Create: CreateNavigator
-})
+    {
+        contentOptions: {
+            activeTintColor: THEME.PRIMARY_COLOR,
+            labelStyle: {
+                fontFamily: 'open-regular'
+            }
+        }
+    }
+)
 
 export const AppNavigation = createAppContainer(MainNavigator)
