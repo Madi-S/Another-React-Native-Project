@@ -14,7 +14,7 @@ import { AboutScreen } from '../screens/AboutScreen'
 import { BookedScreen } from '../screens/BookedScreen'
 import { CreateScreen } from '../screens/CreateScreen'
 
-const defaultNavigorOptions = {
+const defaultNavigationOptions = {
     headerStyle: {
         backgroundColor:
             Platform.OS === 'android' ? THEME.PRIMARY_COLOR : 'white'
@@ -23,25 +23,23 @@ const defaultNavigorOptions = {
 }
 
 const PostNavigator = createStackNavigator(
-    {
-        Main: MainScreen,
-        Post: PostScreen
-    },
-    {
-        initialRouteName: 'Main',
-        defaultNavigationOptions: defaultNavigorOptions
-    }
+    { Main: MainScreen, Post: PostScreen },
+    { initialRouteName: 'Main', defaultNavigationOptions }
 )
 
 const BookedNavigator = createStackNavigator(
-    {
-        Booked: BookedScreen,
-        Post: PostScreen
-    },
-    {
-        initialRouteName: 'Booked',
-        defaultNavigationOptions: defaultNavigorOptions
-    }
+    { Booked: BookedScreen, Post: PostScreen },
+    { initialRouteName: 'Booked', defaultNavigationOptions }
+)
+
+const AboutNavigator = createStackNavigator(
+    { About: AboutScreen },
+    { defaultNavigationOptions }
+)
+
+const CreateNavigator = createStackNavigator(
+    { About: CreateScreen },
+    { defaultNavigationOptions }
 )
 
 const bottomTabsConfig = {
@@ -85,9 +83,9 @@ const MainNavigator = createDrawerNavigator({
         screen: bottomNavigator
     },
     About: {
-        screen: AboutScreen
+        screen: AboutNavigator
     },
-    Create: CreateScreen
+    Create: CreateNavigator
 })
 
 export const AppNavigation = createAppContainer(MainNavigator)
