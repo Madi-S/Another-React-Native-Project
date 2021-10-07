@@ -59,7 +59,7 @@ PostScreen.navigationOptions = ({ navigation }) => {
         },
         headerTintColor: 'blue'
         */
-        headerRight: (
+        headerRight: () => (
             <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
                 <Item
                     title='Bookmark'
