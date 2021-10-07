@@ -10,9 +10,9 @@ import {
 } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
-import { AppHeaderIcon } from '../components/AppHeaderIcon'
-import { THEME } from '../theme'
 import { DATA } from '../data'
+import { THEME } from '../theme'
+import { AppHeaderIcon } from '../components/AppHeaderIcon'
 
 export const PostScreen = ({ navigation }) => {
     const postId = navigation.getParam('postId')

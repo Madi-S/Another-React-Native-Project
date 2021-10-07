@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, StyleSheet, FlatList } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
-import { AppHeaderIcon } from '../components/AppHeaderIcon'
 import { DATA } from '../data'
 import { Post } from '../components/Post'
+import { AppHeaderIcon } from '../components/AppHeaderIcon'
 
 export const MainScreen = ({ navigation }) => {
     const openPostHandler = post => {
@@ -14,7 +14,7 @@ export const MainScreen = ({ navigation }) => {
         navigation.navigate('Post', {
             date: post.date,
             postId: post.id,
-            booked: post.booked,
+            booked: post.booked
         })
     }
 
