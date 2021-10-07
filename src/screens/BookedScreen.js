@@ -19,7 +19,7 @@ export const BookedScreen = ({ navigation }) => {
     )
 }
 
-MainScreen.navigationOptions = ({ navigation }) => ({
+BookedScreen.navigationOptions = ({ navigation }) => ({
     headerTitle: 'Bookmarks',
     headerLeft: () => (
         <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
