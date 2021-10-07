@@ -38,7 +38,7 @@ const AboutNavigator = createStackNavigator(
 )
 
 const CreateNavigator = createStackNavigator(
-    { About: CreateScreen },
+    { Create: CreateScreen },
     { defaultNavigationOptions }
 )
 
