@@ -1,8 +1,9 @@
 import AppLoading from 'expo-app-loading'
 import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
-import {} from 'react-native'
+import { Provider } from 'react-redux'
 
+import store from './src/store'
 import { boostrap } from './src/bootstrap'
 import { AppNavigation } from './src/navigation/AppNavigation'
 
@@ -20,9 +21,9 @@ export default function App() {
     }
 
     return (
-        <>
+        <Provider store={store}>
             <AppNavigation />
             <StatusBar style='auto' />
-        </>
+        </Provider>
     )
 }
