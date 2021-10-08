@@ -11,25 +11,22 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
-import { DATA } from '../data'
 import { THEME } from '../theme'
-import { toggleBooked } from '../store/actions/post'
 import { AppHeaderIcon } from '../components/AppHeaderIcon'
+import { toggleBooked, removePost } from '../store/actions/post'
 
 export const PostScreen = ({ navigation }) => {
     const postId = navigation.getParam('postId')
 
-    const dispatch = useDispatch()
     const post = useSelector(state =>
         state.post.allPosts.find(p => p.id === postId)
     )
-    const booked = useSelector(state =>
-        state.post.bookedPosts.some(post => post.id === postId)
-    )
 
-    useEffect(() => {
-        navigation.setParams({ booked })
-    }, [booked])
+    const dispatch = useDispatch()
+
+    const booked = useSelector(state =>
+        state.post.bookedPosts.some(p => p.id === postId)
+    )
 
     const toggleHandler = useCallback(() => {
         dispatch(toggleBooked(postId))
@@ -39,15 +36,26 @@ export const PostScreen = ({ navigation }) => {
         navigation.setParams({ toggleHandler })
     }, [toggleHandler])
 
-    const removePost = () => {
+    useEffect(() => {
+        navigation.setParams({ booked })
+    }, [booked])
+
+    const removeHandler = () => {
         Alert.alert('Post deletion', 'Are you sure?', [
             { text: 'Cancel', style: 'cancel' },
             {
                 text: 'Remove',
                 style: 'destructive',
-                onPress: () => console.log('OK Pressed')
+                onPress() {
+                    navigation.navigate('Main')
+                    dispatch(removePost(postId))
+                }
             }
         ])
+    }
+
+    if (!post) {
+        return <Text>This post does not exist</Text>
     }
 
     return (
@@ -57,7 +65,7 @@ export const PostScreen = ({ navigation }) => {
                 <Text style={styles.title}>{post.text}</Text>
                 <Button
                     title='Delete'
-                    onPress={removePost}
+                    onPress={removeHandler}
                     color={THEME.DANGER_COLOR}
                 />
             </ScrollView>
