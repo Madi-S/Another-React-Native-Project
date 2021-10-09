@@ -14,8 +14,8 @@ import { useDispatch } from 'react-redux'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { THEME } from '../theme'
-import { addPost } from '../store/actions/post'
 import { PhotoPicker } from '../components/PhotoPicker'
+import { addPost, loadPosts } from '../store/actions/post'
 import { AppHeaderIcon } from '../components/AppHeaderIcon'
 
 export const CreateScreen = ({ navigation }) => {

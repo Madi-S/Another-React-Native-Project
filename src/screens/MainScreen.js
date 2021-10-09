@@ -23,7 +23,7 @@ export const MainScreen = ({ navigation }) => {
 
     useEffect(() => {
         dispatch(loadPosts())
-    }, [dispatch])
+    }, [allPosts, dispatch])
 
     return <PostList data={allPosts} onOpen={openPostHandler} />
 }
