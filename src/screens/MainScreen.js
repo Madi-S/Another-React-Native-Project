@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { View, StyleSheet, ActivityIndicator } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
+import { THEME } from '../theme'
 import { loadPosts } from '../store/actions/post'
 import { PostList } from '../components/PostList'
 import { AppHeaderIcon } from '../components/AppHeaderIcon'
 
 export const MainScreen = ({ navigation }) => {
     const dispatch = useDispatch()
+    const loading = useSelector(state => state.post.loading)
     const allPosts = useSelector(state => state.post.allPosts)
 
     const openPostHandler = post => {
@@ -24,6 +27,14 @@ export const MainScreen = ({ navigation }) => {
     useEffect(() => {
         dispatch(loadPosts())
     }, [allPosts, dispatch])
+
+    if (loading) {
+        return (
+            <View style={styles.center}>
+                <ActivityIndicator color={THEME.PRIMARY_COLOR} />
+            </View>
+        )
+    }
 
     return <PostList data={allPosts} onOpen={openPostHandler} />
 }
@@ -48,4 +59,12 @@ MainScreen.navigationOptions = ({ navigation }) => ({
             />
         </HeaderButtons>
     )
+})
+
+const styles = StyleSheet.create({
+    center: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 })
