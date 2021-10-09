@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Image, Button, Alert } from 'react-native'
+import { View, StyleSheet, Image, Button, Alert, Platform } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
 
-export const PhotoPicker = ({}) => {
+export const PhotoPicker = ({ onPick }) => {
     const [image, setImage] = useState(null)
 
     const takePhoto = async () => {
@@ -19,7 +19,10 @@ export const PhotoPicker = ({}) => {
             aspect: [16, 9]
         })
 
-        console.log(img)
+        if (img.uri) {
+            setImage(img.uri)
+            onPick (img.uri)
+        }
     }
 
     return (
@@ -31,16 +34,19 @@ export const PhotoPicker = ({}) => {
 }
 
 async function askForPermissions() {
-    const {status} = await Permissions.askAsync(
-        Permissions.CAMERA,
-        Permissions.MEDIA_LIBRARY
-    )
-
-    if (status !== 'granted') {
-        Alert.alert('Error', 'You did not grant permissions for taking a photo')
-        return false
+    if (Platform.OS !== 'web') {
+        const { status } =
+            await ImagePicker.requestMediaLibraryPermissionsAsync()
+        if (status !== 'granted') {
+            Alert.alert(
+                'Error',
+                'Sorry, we need camera roll permissions to make this work!'
+            )
+            return false
+        }
+        return true
     }
-    return true
+    return false
 }
 
 const styles = StyleSheet.create({
