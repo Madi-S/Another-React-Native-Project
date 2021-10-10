@@ -6,6 +6,16 @@
 
 2. `npm start`
 
+### To deploy:
+
+1. `expo publish`
+
+2. `expo build:android -t app-bundle`
+
+3. `expo fetch:android:keystore`
+
+4. `expo upload:android`
+
 <hr>
 
 ### This react native application covers:
