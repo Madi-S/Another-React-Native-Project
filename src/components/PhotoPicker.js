@@ -20,7 +20,7 @@ export const PhotoPicker = ({ onPick }) => {
 
         if (img.uri) {
             setImage(img.uri)
-            onPick (img.uri)
+            onPick(img.uri)
         }
     }
 
