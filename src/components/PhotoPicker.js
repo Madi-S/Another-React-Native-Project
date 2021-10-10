@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Image, Button, Alert, Platform } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
-import * as Permissions from 'expo-permissions'
 
 export const PhotoPicker = ({ onPick }) => {
     const [image, setImage] = useState(null)
